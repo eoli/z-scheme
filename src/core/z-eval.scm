@@ -1,0 +1,25 @@
+(define (z-eval exp env)
+	(cond
+		((self-evaluating? exp) exp)
+		((variable? exp) (lookup-variable exp env))
+		((assignment? exp) 
+			(set! env (extend-env
+				(list (variable-name exp))
+				(list (z-eval (variable-value exp) env))
+			env)))
+		((defination? exp) "defination")
+		((if? exp) "if")
+		((lambda? exp)
+				(make-procedure 
+					(lambda-args exp)
+					(lambda-body exp)
+					env
+				))
+		((begin? exp) (eval-begin (cdr exp) env))
+		((cond? exp) "cond")
+		((application? exp) ;(add '(1 2))
+			(z-apply (z-eval (operator exp) env)
+					(eval-sequence (operands exp) env)))
+		(else "error")
+	)
+)

@@ -1,0 +1,2 @@
+(load "z-scheme")
+(irep)

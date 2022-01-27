@@ -1,3 +1,6 @@
+(load "support/default")
+
+
 (define (z-eval exp env)
 	(cond
 		((self-evaluating? exp) exp)
@@ -7,8 +10,11 @@
 				(list (variable-name exp))
 				(list (z-eval (variable-value exp) env))
 			env)))
-		((defination? exp) "defination")
-		((if? exp) "if")
+		((defination? exp) (not-implemented "define"))
+		((if? exp) 
+			(if (z-eval (cadr exp) env)
+				(z-eval (caddr exp) env)
+				(z-eval (cadddr exp) env)))
 		((lambda? exp)
 				(make-procedure 
 					(lambda-args exp)
@@ -16,8 +22,8 @@
 					env
 				))
 		((begin? exp) (eval-begin (cdr exp) env))
-		((cond? exp) "cond")
-		((application? exp) ;(add '(1 2))
+		((cond? exp) (not-implemented "cond"))
+		((application? exp)
 			(z-apply (z-eval (operator exp) env)
 					(eval-sequence (operands exp) env)))
 		(else "error")

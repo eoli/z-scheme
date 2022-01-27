@@ -73,6 +73,9 @@
 	(cons '* *)
 	(cons '/ /)
 	(cons '? *)
+	(cons '> >)
+	(cons '< <)
+	(cons '= =)
 	(cons 'display display)
 ))
 

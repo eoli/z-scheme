@@ -18,3 +18,7 @@ z-scheme was written in MIT Scheme. Here are some resources about MIT Scheme,
 - [MIT Scheme User Manual](https://www.gnu.org/software/mit-scheme/documentation/stable/mit-scheme-user.html)
 
 - [MIT Scheme Reference](https://www.gnu.org/software/mit-scheme/documentation/stable/mit-scheme-ref.html)
+
+and,
+
+- [R5RS](https://schemers.org/Documents/Standards/R5RS/r5rs.pdf)
